@@ -20,6 +20,7 @@ public class Message {
     private User author;
     private String text;
     private String tag;
+    private String filename;
 
     public String getAuthorName(){
         return author.getUsername();

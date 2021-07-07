@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <p th:inline="text">acc:[[${#httpServletRequest.remoteUser}]]</p>
@@ -20,6 +20,10 @@
     <p th:text = "${message.text}"></p>
     <p th:text = "${message.tag}"></p>
     <p th:text = "${message.authorName}"></p>
+    <div th:if="${message.filename != null}">
+        <img th:src="@{/img/{path}(path=${message.filename})}" alt="">
+    </div>
+
     <form th:action="@{/delete}" method="post">
         <input type="hidden" name="id" th:value="${message.id}">
         <input type="submit" value="delete">
