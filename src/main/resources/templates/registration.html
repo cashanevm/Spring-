@@ -5,18 +5,49 @@
   <title>Spring Security Example </title>
 </head>
 <body>
-<div  th:if="message" >
-<span th:text="${message}"></span> You can  <a  th:href="@{/login}">Sing in!</a>
-</div>
+  <div  th:if="userError" >
+    <span th:text="${message}"></span> You can  <a  th:href="@{/login}">Sing in!</a>
+  </div>
 
 
-<hr>
-Add new user
-<form th:action="@{/registration}" method="post">
-  <div><label> User Name : <input type="text" name="username"/> </label></div>
-  <div><label> Password: <input type="password" name="password"/> </label></div>
-  <div><label> Email: <input type="email" name="email"/> </label></div>
-  <div><input type="submit" value="Sign In"/></div>
+  <hr>
+  Add new user
+  <form th:action="@{/registration}" method="post">
+    <div  th:if="usernameError" >
+      <span th:text="${usernameError}"></span>
+    </div>
+    <div>
+      <label> User Name :
+        <input th:unless = "!${user}" type="text" name="username" th:value="${user.username}">
+        <input th:if = "!${user} " type="text" name="username">
+      </label>
+    </div>
+    <div  th:if="passwordError" >
+      <span th:text="${passwordError}"></span>
+    </div>
+    <div>
+      <label> Password:
+        <input type="password" name="password"/>
+      </label>
+    </div>
+    <div  th:if="passwordCompError" >
+      <span th:text="${passwordCompError}"></span>
+    </div>
+    <div>
+      <label> Password:
+        <input type="password" name="password2"/>
+      </label>
+    </div>
+    <div  th:if="emailError" >
+      <span th:text="${emailError}"></span>
+    </div>
+    <div>
+      <label> Email:
+        <input th:unless = "!${user}" type="email" name="email" th:value="${user.email}">
+        <input th:if = "!${user} " type="email" name="email">
+      </label>
+    </div>
+    <input type="submit" value="Sign In"/>
 </form>
 <hr>
 </body>

@@ -6,12 +6,28 @@
 </head>
 <body>
 
-<form th:action="@{/add}" th:object="${message}" method="post" enctype="multipart/form-data">
+<form th:if = "!${message}" th:action="@{/add}" th:object="${message}" method="post" enctype="multipart/form-data">
     <input type="text" th:field="*{text}" id="text" >
     <input type="file" name="file">
     <input type="text" th:field="*{tag}">
     <input type="submit" value="submit">
 </form>
+
+<form th:unless = "!${message}" th:action="@{/add}" th:object="${message}" method="post" enctype="multipart/form-data">
+    <div th:if="${textError}">
+        <p th:text="${textError}"></p>
+    </div>
+    <input type="text" th:field="*{text}" th:value="${message.text}" >
+    <input type="file" name="file">
+    <div th:if="${tagError}">
+        <p th:text="${tagError}"></p>
+    </div>
+    <input type="text" th:field="*{tag}" th:value="${message.tag}">
+    <input type="submit" value="submit">
+</form>
+
+
+
 
 
 </body>
