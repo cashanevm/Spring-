@@ -3,6 +3,7 @@ package com.example.letscode.Service;
 
 import com.example.letscode.Domain.Role;
 import com.example.letscode.Domain.User;
+import com.example.letscode.Repository.MessageRepository;
 import com.example.letscode.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,13 +12,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
-    public UserService(UserRepository userRepository){
+    private final MessageRepository messageRepository;
+    public UserService(UserRepository userRepository,MessageRepository messageRepository){
+        this.messageRepository = messageRepository;
         this.userRepository = userRepository;
     }
 
@@ -60,5 +64,12 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
 
         return true;
+    }
+    public void deleteUser(User user){
+       messageRepository.findByAuthor(user).forEach((x)->{
+           messageRepository.delete(x);
+       });
+       userRepository.delete(user);
+
     }
 }

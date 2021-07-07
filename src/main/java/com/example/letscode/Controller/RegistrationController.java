@@ -28,7 +28,8 @@ public class RegistrationController {
             model.addAttribute("message", "User exists!");
             return "registration";
         }
-    return "redirect:/login";
+        model.addAttribute("message", "Сonfirm your email: "+ user.getEmail()+" please!");
+    return "login";
     }
     @GetMapping("/activate/{code}")
     public String activate(Model model, @PathVariable String code){
