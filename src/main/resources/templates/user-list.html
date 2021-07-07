@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>User's list:</h1>
+<div th:each ="user: ${users}">
+    <hr>
+        <h2>Username: <span th:text="${user.username}"></span>| id: <span th:text="${user.id}"> </span></h2>
+        <p>password: <span th:text="${user.password}"> </span></p>
+        <p>active: <span th:text="${user.active}"></span></p>
+        <p th:each="role :${user.roles}">role: <span th:text="${role}"></span></p>
+    <form th:action="@{/user/{path}(path=${user.id})}" >
+
+        <input type="submit" value="edit">
+    </form>
+    <form th:action="@{/delete}" method="post">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="submit" value="delete">
+    </form>
+    <hr>
+</div>
+</body>
+</html>

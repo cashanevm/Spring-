@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<p th:inline="text">acc:[[${#httpServletRequest.remoteUser}]]</p>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+<hr>
+<form th:action="@{/user}" >
+    <input type="submit" value="get users"/>
+</form>
+<hr>
+<div th:each="message : ${messages}">
+    <p th:text = "${message.id}"></p>
+    <p th:text = "${message.text}"></p>
+    <p th:text = "${message.tag}"></p>
+    <p th:text = "${message.authorName}"></p>
+    <form th:action="@{/delete}" method="post">
+        <input type="hidden" name="id" th:value="${message.id}">
+        <input type="submit" value="delete">
+    </form>
+</div>
+<hr>
+<a th:href="@{/add}">add</a>
+
+</body>
+
+</html>
