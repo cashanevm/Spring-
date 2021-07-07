@@ -6,9 +6,12 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<p th:inline="text">acc:[[${#httpServletRequest.remoteUser}]]</p>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
+</form>
+<p th:inline="text">acc:[[${#httpServletRequest.remoteUser}]]</p>
+<form th:action="@{/user/profile}">
+    <input type="submit" value="profile">
 </form>
 <hr>
 <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/user}" >
