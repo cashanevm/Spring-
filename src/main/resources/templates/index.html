@@ -11,7 +11,7 @@
     <input type="submit" value="Sign Out"/>
 </form>
 <hr>
-<form th:action="@{/user}" >
+<form sec:authorize="hasAuthority('ADMIN')" th:action="@{/user}" >
     <input type="submit" value="get users"/>
 </form>
 <hr>

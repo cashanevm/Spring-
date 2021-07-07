@@ -17,10 +17,16 @@
         <java.version>11</java.version>
     </properties>
     <dependencies>
+<!--        thymeleaf-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
+<!--        &#45;&#45;-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
