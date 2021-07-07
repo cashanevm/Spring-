@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
   <title>Spring Security Example </title>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
   <div  th:if="userError" >
@@ -46,6 +47,12 @@
         <input th:unless = "!${user}" type="email" name="email" th:value="${user.email}">
         <input th:if = "!${user} " type="email" name="email">
       </label>
+    </div>
+    <div th:if="${captchaError}">
+      <p th:text="${captchaError}"></p>
+    </div>
+    <div class="g-recaptcha" data-sitekey="6Lf-UX8bAAAAAGw2jT8wD4EeOB71pcQoOaxzVCQq">
+
     </div>
     <input type="submit" value="Sign In"/>
 </form>
